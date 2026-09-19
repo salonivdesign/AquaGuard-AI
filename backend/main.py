@@ -12,7 +12,7 @@ import pandas as pd
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from backend.database import create_database, save_analysis
+from backend.database import create_database, save_analysis, get_analysis_history
 
 
 # ── Project paths ─────────────────────────────────────────────────────────────
@@ -186,3 +186,7 @@ def home():
     return {
         "message": "AquaGuard AI API is running"
     }
+
+@app.get("/history")
+def history():
+    return get_analysis_history()

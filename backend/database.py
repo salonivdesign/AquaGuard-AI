@@ -90,3 +90,28 @@ def save_analysis(
 
     connection.commit()
     connection.close()
+
+def get_analysis_history():
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        SELECT
+            id,
+            potability_risk,
+            potability_probability,
+            anomaly_status,
+            overall_risk,
+            recommendation,
+            created_at
+        FROM analyses
+        ORDER BY id DESC
+    """)
+
+    rows = cursor.fetchall()
+
+    connection.close()
+
+    return [dict(row) for row in rows]

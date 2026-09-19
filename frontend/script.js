@@ -47,3 +47,49 @@ form.addEventListener("submit", async function (event) {
             "Unable to connect to the AquaGuard AI backend.";
     }
 });
+
+async function loadHistory() {
+    try {
+        const response = await fetch("http://127.0.0.1:8000/history");
+
+        const history = await response.json();
+
+        const historyBody = document.getElementById("historyBody");
+
+        if (history.length === 0) {
+            historyBody.innerHTML = `
+                <tr>
+                    <td colspan="5">No analysis history available.</td>
+                </tr>
+            `;
+            return;
+        }
+
+        historyBody.innerHTML = "";
+
+        history.forEach(item => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${item.created_at}</td>
+                <td>${item.overall_risk}</td>
+                <td>${item.potability_risk}</td>
+                <td>${item.anomaly_status}</td>
+                <td>${(item.potability_probability * 100).toFixed(2)}%</td>
+            `;
+
+            historyBody.appendChild(row);
+        });
+
+    } catch (error) {
+        console.error(error);
+
+        document.getElementById("historyBody").innerHTML = `
+            <tr>
+                <td colspan="5">Unable to load analysis history.</td>
+            </tr>
+        `;
+    }
+}
+
+loadHistory();

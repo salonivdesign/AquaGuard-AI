@@ -157,3 +157,112 @@ footer {
         width: 95%;
     }
 }
+
+
+.history-section {
+    margin-top: 30px;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.history-section h2 {
+    margin-bottom: 8px;
+    color: #0f766e;
+    font-size: 28px;
+}
+
+.history-table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+#historyTable {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+    background: white;
+}
+
+#historyTable thead {
+    background: #f0fdfa;
+}
+
+#historyTable th {
+    padding: 16px;
+    text-align: left;
+    color: #115e59;
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 1px solid #d1d5db;
+}
+
+#historyTable td {
+    padding: 16px;
+    color: #374151;
+    font-size: 14px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+#historyTable tbody tr:hover {
+    background: #f8fafc;
+}
+
+#historyTable tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Risk badges */
+
+#historyTable td:nth-child(2),
+#historyTable td:nth-child(3),
+#historyTable td:nth-child(4) {
+    font-weight: 600;
+}
+
+/* Overall risk */
+
+#historyTable td:nth-child(2) {
+    color: #d97706;
+}
+
+/* Potability risk */
+
+#historyTable td:nth-child(3) {
+    color: #059669;
+}
+
+/* Anomaly */
+
+#historyTable td:nth-child(4) {
+    color: #ea580c;
+}
+
+/* Probability */
+
+#historyTable td:nth-child(5) {
+    font-weight: 600;
+    color: #0f766e;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .history-section {
+        padding: 20px;
+    }
+
+    .history-section h2 {
+        font-size: 24px;
+    }
+
+    #historyTable th,
+    #historyTable td {
+        padding: 12px;
+        font-size: 13px;
+    }
+}
