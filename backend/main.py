@@ -10,7 +10,9 @@ import joblib
 import pandas as pd
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from backend.database import create_database, save_analysis
 
 
 # ── Project paths ─────────────────────────────────────────────────────────────
@@ -53,6 +55,16 @@ app = FastAPI(
     description="AI-based water-quality risk assessment and anomaly detection API",
     version="1.0.0",
 )
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://127.0.0.1:5500"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+create_database()
 
 
 # ── Input data model ─────────────────────────────────────────────────────────
@@ -130,7 +142,23 @@ def predict_water_quality(data: WaterQuality):
             "No major risk signal detected by the prototype. "
             "Continue routine water-quality monitoring and testing."
         )
-
+    save_analysis(
+    data.ph,
+    data.Hardness,
+    data.Solids,
+    data.Chloramines,
+    data.Sulfate,
+    data.Conductivity,
+    data.Organic_carbon,
+    data.Trihalomethanes,
+    data.Turbidity,
+    "HIGH" if prediction == 0 else "LOW",
+    float(potability_probability),
+    "UNUSUAL" if anomaly_prediction == -1 else "NORMAL",
+    overall_risk,
+    recommendation
+)
+    
     # API response
     return {
         "potability_risk": "HIGH" if prediction == 0 else "LOW",

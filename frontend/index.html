@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AquaGuard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>AquaGuard</h1>
+        <p>AI-Based Water Quality Risk Assessment</p>
+    </header>
+    <main>
+        <section class="input-section">
+            <h2>Enter Water Quality Parameters</h2>
+            <form id="waterForm">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label for="ph">pH</label>
+                        <input type="number" id="ph" step="any" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="Hardness">Hardness</label>
+                        <input type="number" id="Hardness" step="any" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="Solids">Solids</label>
+                        <input type="number" id="Solids" step="any" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="Chloramines">Chloramines</label>
+                        <input type="number" id="Chloramines" step="any" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="Sulfate">Sulfate</label>
+                        <input type="number" id="Sulfate" step="any" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="Conductivity">Conductivity</label>
+                        <input type="number" id="Conductivity" step="any" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="Organic_carbon">Organic Carbon</label>
+                        <input type="number" id="Organic_carbon" step="any" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="Trihalomethanes">Trihalomethanes</label>
+                        <input type="number" id="Trihalomethanes" step="any" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="Turbidity">Turbidity</label>
+                        <input type="number" id="Turbidity" step="any" required>
+                    </div>
+                </div>
+                <button type="submit">Analyze Water</button>
+            </form>
+        </section>
+        <section id="resultSection" class="result-section">
+
+            <h2>Analysis Result</h2>
+
+            <div class="result-grid">
+
+                <div class="result-card">
+                    <h3>Overall Risk</h3>
+                    <p id="overallRisk">-</p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Potability Risk</h3>
+                    <p id="potabilityRisk">-</p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Anomaly Status</h3>
+                    <p id="anomalyStatus">-</p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Potability Probability</h3>
+                    <p id="probability">-</p>
+                </div>
+
+            </div>
+
+            <div class="recommendation">
+                <h3>Recommendation</h3>
+                <p id="recommendation">Enter water-quality values and click "Analyze Water".</p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>AquaGuard— Prototype for water-quality risk assessment</p>
+        <p>AI can assist in water contamination risk assessment but do not replace laboratory water testing.</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
